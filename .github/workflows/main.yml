@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   sast_scan:
-    name: Bandit Scan
+    name: semgrep Scan
     runs-on: ubuntu-latest
     container: 
       image: semgrep/semgrep  
