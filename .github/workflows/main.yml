@@ -9,7 +9,7 @@ jobs:
     name: Bandit Scan
     runs-on: ubuntu-latest
     container: 
-      image: returntocrop/semgrep  
+      image: semgrep/semgrep  
 
     steps:
     - name: Checkout code
