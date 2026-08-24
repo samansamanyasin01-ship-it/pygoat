@@ -8,27 +8,36 @@ jobs:
   sast_scan:
     name: Bandit Scan
     runs-on: ubuntu-latest
+    container: 
+      image: returntocrop/semgrep  
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: setup python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.8
-
-    - name: install bandit
-      run: pip install bandit
-
-    - name: bandit scan run
-      run: bandit -ll -ii -r . -f json -o bandit-scan.json
+    - name: run semgrep sast scam
+      run: semgrep scan --config auto --json --output=semgrep-results.json
     - name: upload artifact
       uses: actions/upload-artifact@v4
-      if: always()
       with: 
-       name: bandit findings
-       path: bandit-scan.json
+       name: semgrep findings
+       path: semgrep-results.json
+      
+  #  - name: setup python
+  #  uses: actions/setup-python@v4
+  #   with:
+  #     python-version: 3.8
+        
+  #  - name: install bandit
+  #    run: pip install bandit
+
+  #  - name: bandit scan run
+  #    run: bandit -ll -ii -r . -f json -o bandit-scan.json
+  #  - name: upload artifact
+  #    uses: actions/upload-artifact@v4
+  #   if: always()
+  #   with: 
+  #     name: bandit findings
+  #    path: bandit-scan.json
   image-scan:
     name: Docker image Scan
     runs-on: ubuntu-latest  
