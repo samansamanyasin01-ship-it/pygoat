@@ -2,8 +2,8 @@ name: CI with nana
 
 on:
   push:
-    branches:
-      - main
+    branches: [master]
+  workflow_dispatch:
 jobs:
   sast_scan:
     name: Bandit Scan
