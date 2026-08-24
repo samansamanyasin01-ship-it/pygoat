@@ -25,6 +25,7 @@ COPY . /app/
 
 
 # install pygoat
+#lets analyze if it works
 EXPOSE 8000
 
 
